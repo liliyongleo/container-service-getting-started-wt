@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    icp.management.ibm.com/authz-type: rbac
+    icp.management.ibm.com/rewrite-target: /
+    icp.management.ibm.com/secure-backends: "true"
+    icp.management.ibm.com/secure-client-ca-secret: monitoring-monitoring-client-certs
+    kubernetes.io/ingress.class: ibm-icp-management
+  generation: 1
+  labels:
+    app: nginx
+  name: nginx
+  namespace: default
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: nginx
+          servicePort: 80
+        path: /nginx99            
